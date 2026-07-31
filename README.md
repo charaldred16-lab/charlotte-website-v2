@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Charlotte Aldred consultancy homepage
 
-## Getting Started
+Reviewed Next.js App Router implementation of the approved desktop, tablet and mobile homepage.
 
-First, run the development server:
+## Included
+
+- Locked homepage copy and section order
+- Newsreader and Manrope via `next/font`
+- Responsive desktop, tablet and mobile layouts
+- Accessible mobile navigation with focus management, Escape-to-close and close-on-navigation behaviour
+- Mobile Selected Work swipe carousel with live `1 of 2` status
+- Focus-visible and reduced-motion support
+- SEO metadata, canonical URL, Open Graph image, Twitter card, JSON-LD, robots and sitemap
+- Approved hero and worked-with assets
+- Placeholder routes for About, Insights and both case studies, marked `noindex` until their content is complete
+- Pinned production dependencies and a Node.js version requirement
+
+## Run locally
+
+Next.js 16 requires Node.js 20.9 or newer. Node 22 is recommended for this project.
 
 ```bash
+nvm use
+npm install
+npm run check
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+`npm run check` runs ESLint, TypeScript checking and a production build.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Add to the existing website
 
-## Learn More
+The main implementation files are:
 
-To learn more about Next.js, take a look at the following resources:
+- `src/app/page.tsx`
+- `src/app/globals.css`
+- `src/app/layout.tsx`
+- `src/components/SiteHeader.tsx`
+- `src/components/WorkCarousel.tsx`
+- `src/lib/site.ts`
+- the image files in `public/`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Copy these into the corresponding folders of the existing Next.js project, preserving existing analytics, deployment settings and any routes already in use.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Production environment variables
 
-## Deploy on Vercel
+Create `.env.local` locally and add the same values in Vercel:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+NEXT_PUBLIC_SITE_URL=https://charlottealdred.com
+NEXT_PUBLIC_CONTACT_EMAIL=hello@charlottealdred.com
+NEXT_PUBLIC_LINKEDIN_URL=https://www.linkedin.com/in/charlotte-aldred-b055151b/
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`NEXT_PUBLIC_SITE_URL` is important because it is used for canonical metadata, Open Graph URLs, robots and the sitemap. The code can fall back to Vercel deployment variables, but setting the production domain explicitly is preferable.
+
+## Before public launch
+
+The homepage is complete, but the About, Insights and two case-study routes are intentionally placeholders. They are marked `noindex`, but they are still reachable from homepage links. Before making the site public, either:
+
+1. build those pages, or
+2. temporarily remove their homepage links/sections.
+
+Only show Insights articles that are genuinely published.
+
+After the first successful install, commit the generated `package-lock.json` so Vercel and local builds use the same dependency versions.
