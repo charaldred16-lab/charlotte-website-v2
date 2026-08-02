@@ -1,48 +1,70 @@
-# Charlotte Aldred consultancy homepage
+# Charlotte Aldred consultancy website
 
-Reviewed Next.js App Router implementation of the approved desktop, tablet and mobile homepage.
+Reviewed Next.js App Router implementation of the approved responsive homepage and Hertz case study.
 
 ## Included
 
-- Locked homepage copy and section order
+- Locked homepage copy and responsive layouts
+- Responsive Hertz case study using genuine evidence screenshots
 - Newsreader and Manrope via `next/font`
-- Responsive desktop, tablet and mobile layouts
-- Accessible mobile navigation with focus management, Escape-to-close and close-on-navigation behaviour
-- Mobile Selected Work swipe carousel with live `1 of 2` status
-- Focus-visible and reduced-motion support
-- SEO metadata, canonical URL, Open Graph image, Twitter card, JSON-LD, robots and sitemap
-- Approved hero and worked-with assets
-- Placeholder routes for About, Insights and both case studies, marked `noindex` until their content is complete
-- Pinned production dependencies and a Node.js version requirement
+- Accessible navigation, skip link, focus management and reduced-motion support
+- Branded not-found and recoverable error states
+- SEO metadata, JSON-LD, robots and sitemap
+- Reusable typed case-study content system
+- Security response headers and the `X-Powered-By` header disabled
+- Automated GitHub quality workflow
+- Playwright browser checks for navigation, carousel, evidence, overflow, 404 and security headers
+- Homepage and case-study CSS kept outside page/component code
 
-## Run locally
+## Requirements
 
-Next.js 16 requires Node.js 20.9 or newer. Node 22 is recommended for this project.
+- Node.js 24 LTS
+- npm
+
+The project pins the Node major version in both `.nvmrc` and `package.json`.
+
+## Install and run
 
 ```bash
-nvm use
 npm install
-npm run check
+npx playwright install chromium
+npm run quality
 npm run dev
 ```
 
 Open `http://localhost:3000`.
 
-`npm run check` runs ESLint, TypeScript checking and a production build.
+Commands:
 
-## Add to the existing website
+- `npm run check` — ESLint, TypeScript and production build
+- `npm run test:e2e` — production build followed by Playwright browser tests
+- `npm run quality` — lint, typecheck, production build and browser tests
 
-The main implementation files are:
+## Project structure
 
-- `src/app/page.tsx`
-- `src/app/globals.css`
-- `src/app/layout.tsx`
-- `src/components/SiteHeader.tsx`
-- `src/components/WorkCarousel.tsx`
-- `src/lib/site.ts`
-- the image files in `public/`
+```text
+src/
+├── app/                         routes, metadata and global entry styles
+├── components/                  shared interactive and layout components
+├── content/case-studies/        typed case-study content
+├── lib/                         site and case-study helpers
+└── styles/case-study.css        reusable case-study presentation
 
-Copy these into the corresponding folders of the existing Next.js project, preserving existing analytics, deployment settings and any routes already in use.
+tests/site.spec.ts               browser smoke tests
+.github/workflows/quality.yml    automated GitHub checks
+```
+
+The Hertz route is intentionally small. Its content lives in:
+
+```text
+src/content/case-studies/hertz.ts
+```
+
+The reusable page structure lives in:
+
+```text
+src/components/case-study/CaseStudyLayout.tsx
+```
 
 ## Production environment variables
 
@@ -54,15 +76,10 @@ NEXT_PUBLIC_CONTACT_EMAIL=hello@charlottealdred.com
 NEXT_PUBLIC_LINKEDIN_URL=https://www.linkedin.com/in/charlotte-aldred-b055151b/
 ```
 
-`NEXT_PUBLIC_SITE_URL` is important because it is used for canonical metadata, Open Graph URLs, robots and the sitemap. The code can fall back to Vercel deployment variables, but setting the production domain explicitly is preferable.
+`NEXT_PUBLIC_SITE_URL` is used for canonical metadata, Open Graph URLs, robots, JSON-LD and the sitemap.
 
 ## Before public launch
 
-The homepage is complete, but the About, Insights and two case-study routes are intentionally placeholders. They are marked `noindex`, but they are still reachable from homepage links. Before making the site public, either:
+The About, Insights and Ocado case-study routes are still placeholders and are marked `noindex`. Build those pages or temporarily remove their public links before promoting the finished site.
 
-1. build those pages, or
-2. temporarily remove their homepage links/sections.
-
-Only show Insights articles that are genuinely published.
-
-After the first successful install, commit the generated `package-lock.json` so Vercel and local builds use the same dependency versions.
+Commit the updated `package-lock.json` after installation so local, GitHub and Vercel builds resolve the same dependency tree.

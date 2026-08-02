@@ -1,18 +1,27 @@
 import type { Metadata } from "next";
-import { PlaceholderPage } from "@/components/PlaceholderPage";
+import { CaseStudyLayout } from "@/components/case-study/CaseStudyLayout";
+import { hertzCaseStudy } from "@/content/case-studies/hertz";
+import {
+  createCaseStudyJsonLd,
+  createCaseStudyMetadata,
+  getCaseStudyLayoutContent,
+} from "@/lib/case-study";
 
-export const metadata: Metadata = {
-  title: "Hertz keyless rental case study",
-  description: "The full Hertz keyless rental case study is currently being developed.",
-  robots: { index: false, follow: false },
-};
+export const metadata: Metadata = createCaseStudyMetadata(hertzCaseStudy);
 
 export default function HertzCaseStudyPage() {
+  const jsonLd = createCaseStudyJsonLd(hertzCaseStudy);
+  const serializedJsonLd = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
+  const layoutContent = getCaseStudyLayoutContent(hertzCaseStudy);
+
   return (
-    <PlaceholderPage
-      eyebrow="Hertz"
-      title="Removing the airport rental queue"
-      description="The full case study page will be developed in the next phase."
-    />
+    <>
+      <CaseStudyLayout {...layoutContent} />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializedJsonLd }}
+      />
+    </>
   );
 }

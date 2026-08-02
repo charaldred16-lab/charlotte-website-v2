@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { WorkCarousel } from "@/components/WorkCarousel";
 import {
   challenges,
   insights,
-  navigation,
   principles,
   siteConfig,
 } from "@/lib/site";
@@ -30,7 +30,6 @@ export default function HomePage() {
   const featuredInsight = insights.find((item) => "featured" in item && item.featured) ?? insights[0];
   const secondaryInsights = insights.filter((item) => item !== featuredInsight);
 
-  const currentYear = new Date().getFullYear();
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -58,7 +57,7 @@ export default function HomePage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <section className="hero" aria-labelledby="hero-title">
           <div className="container hero-layout">
             <div className="hero-headline">
@@ -277,30 +276,7 @@ export default function HomePage() {
         </section>
       </main>
 
-      <footer id="footer-nav">
-        <div className="container footer-grid">
-          <div className="footer-brand">
-            <Link className="brand" href="/" aria-label="Charlotte Aldred home">
-              CA
-            </Link>
-            <p className="copyright">© {currentYear} Charlotte Aldred</p>
-          </div>
-          <nav className="footer-nav" aria-label="Footer navigation">
-            {navigation.map((item) => (
-              <Link key={item.label} href={item.href}>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-          <div className="footer-contact">
-            <strong>Contact</strong>
-            <a href={`mailto:${siteConfig.email}`}>Email</a>
-            <a href={siteConfig.linkedIn} target="_blank" rel="noreferrer">
-              LinkedIn
-            </a>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
 
       <script
         type="application/ld+json"

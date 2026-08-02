@@ -4,7 +4,11 @@ import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 import { navigation } from "@/lib/site";
 
-export function SiteHeader() {
+type SiteHeaderProps = {
+  activeItem?: (typeof navigation)[number]["label"];
+};
+
+export function SiteHeader({ activeItem }: SiteHeaderProps) {
   const [open, setOpen] = useState(false);
   const menuId = useId();
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -38,8 +42,12 @@ export function SiteHeader() {
     };
   }, [open]);
 
+  const headerClassName = activeItem
+    ? "site-header site-header--inner-page"
+    : "site-header";
+
   return (
-    <header className="site-header">
+    <header className={headerClassName}>
       <div className="container header-inner">
         <Link className="brand" href="/" aria-label="Charlotte Aldred home">
           CA
@@ -47,7 +55,12 @@ export function SiteHeader() {
 
         <nav className="desktop-nav" aria-label="Primary navigation">
           {navigation.map((item) => (
-            <Link key={item.label} href={item.href}>
+            <Link
+              key={item.label}
+              href={item.href}
+              className={item.label === activeItem ? "nav-active" : undefined}
+              aria-current={item.label === activeItem ? "location" : undefined}
+            >
               {item.label}
             </Link>
           ))}
@@ -75,7 +88,13 @@ export function SiteHeader() {
       >
         <div className="container responsive-menu-inner">
           {navigation.map((item) => (
-            <Link key={item.label} href={item.href} onClick={() => setOpen(false)}>
+            <Link
+              key={item.label}
+              href={item.href}
+              className={item.label === activeItem ? "nav-active" : undefined}
+              aria-current={item.label === activeItem ? "location" : undefined}
+              onClick={() => setOpen(false)}
+            >
               {item.label}
             </Link>
           ))}

@@ -1,8 +1,11 @@
-node_modules
-.next
-out
-.env
-.env.local
-.vercel
 *.log
 .DS_Store
+.env
+.env.local
+.next
+.vercel
+blob-report
+node_modules
+out
+playwright-report
+test-results

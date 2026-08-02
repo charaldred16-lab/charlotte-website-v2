@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Manrope, Newsreader } from "next/font/google";
 import "./globals.css";
+import "../styles/case-study.css";
+import { SkipLink } from "@/components/SkipLink";
 import { siteConfig } from "@/lib/site";
 
 const manrope = Manrope({
@@ -50,7 +52,10 @@ export default function RootLayout({
 }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en-GB" className={`${manrope.variable} ${newsreader.variable}`}>
-      <body>{children}</body>
+      <body>
+        <SkipLink />
+        {children}
+      </body>
     </html>
   );
 }

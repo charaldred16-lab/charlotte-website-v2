@@ -12,7 +12,7 @@ export function PlaceholderPage({
   description,
 }: PlaceholderPageProps) {
   return (
-    <main className="placeholder-page">
+    <main id="main-content" className="placeholder-page" tabIndex={-1}>
       <div className="container placeholder-inner">
         <p className="eyebrow">{eyebrow}</p>
         <h1>{title}</h1>
