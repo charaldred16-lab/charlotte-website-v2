@@ -41,6 +41,40 @@ export type CaseStudyFeatureImage = {
   caption: string;
 };
 
+export type CaseStudyReframePanel = {
+  label: string;
+  question: string;
+  explanation: string;
+};
+
+export type CaseStudyReframe = {
+  eyebrow: string;
+  title: string;
+  introduction: string;
+  original: CaseStudyReframePanel;
+  informed: CaseStudyReframePanel;
+  bridgeLabel: string;
+};
+
+export type CaseStudyDecisionJourneyMarker = {
+  label: string;
+  variant: "original" | "informed";
+};
+
+export type CaseStudyDecisionJourneyStep = {
+  title: string;
+  description: string;
+  markers?: readonly CaseStudyDecisionJourneyMarker[];
+};
+
+export type CaseStudyDecisionJourney = {
+  eyebrow: string;
+  title: string;
+  introduction: string;
+  steps: readonly CaseStudyDecisionJourneyStep[];
+  conclusion: string;
+};
+
 export type CaseStudyLayoutContent = {
   client: string;
   category: string;
@@ -53,6 +87,8 @@ export type CaseStudyLayoutContent = {
   };
   context: readonly CaseStudyContextSection[];
   quote?: string;
+  reframe?: CaseStudyReframe;
+  decisionJourney?: CaseStudyDecisionJourney;
   evidence?: {
     eyebrow: string;
     title: string;

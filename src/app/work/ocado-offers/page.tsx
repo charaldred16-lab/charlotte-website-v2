@@ -1,18 +1,27 @@
 import type { Metadata } from "next";
-import { PlaceholderPage } from "@/components/PlaceholderPage";
+import { CaseStudyLayout } from "@/components/case-study/CaseStudyLayout";
+import { ocadoCaseStudy } from "@/content/case-studies/ocado";
+import {
+  createCaseStudyJsonLd,
+  createCaseStudyMetadata,
+  getCaseStudyLayoutContent,
+} from "@/lib/case-study";
 
-export const metadata: Metadata = {
-  title: "Ocado offers case study",
-  description: "The full Ocado offers case study is currently being developed.",
-  robots: { index: false, follow: false },
-};
+export const metadata: Metadata = createCaseStudyMetadata(ocadoCaseStudy);
 
 export default function OcadoCaseStudyPage() {
+  const jsonLd = createCaseStudyJsonLd(ocadoCaseStudy);
+  const serializedJsonLd = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
+  const layoutContent = getCaseStudyLayoutContent(ocadoCaseStudy);
+
   return (
-    <PlaceholderPage
-      eyebrow="Ocado Technology"
-      title="Rethinking where customers discover offers"
-      description="The full case study page will be developed in the next phase."
-    />
+    <>
+      <CaseStudyLayout {...layoutContent} />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializedJsonLd }}
+      />
+    </>
   );
 }

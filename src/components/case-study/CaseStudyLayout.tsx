@@ -13,6 +13,8 @@ export function CaseStudyLayout({
   journey,
   context,
   quote,
+  reframe,
+  decisionJourney,
   evidence,
   delivery,
   feature,
@@ -23,6 +25,10 @@ export function CaseStudyLayout({
     evidence?.items.length === 3
       ? "cs-evidence-grid cs-evidence-grid--three"
       : "cs-evidence-grid";
+  const journeyListClassName =
+    journey?.steps.length === 3
+      ? "cs-service-list cs-service-list--three"
+      : "cs-service-list";
 
   return (
     <>
@@ -51,7 +57,7 @@ export function CaseStudyLayout({
             {journey ? (
               <aside className="cs-service-summary" aria-label={journey.title}>
                 <p className="cs-service-summary-title">{journey.title}</p>
-                <ol className="cs-service-list">
+                <ol className={journeyListClassName}>
                   {journey.steps.map((step, index) => (
                     <li className="cs-service-step" key={step.title}>
                       <span className="cs-service-number" aria-hidden="true">
@@ -91,6 +97,79 @@ export function CaseStudyLayout({
             ) : null}
           </div>
         </section>
+
+        {reframe ? (
+          <section className="cs-reframe" aria-labelledby="reframe-title">
+            <div className="container">
+              <div className="cs-reframe-head">
+                <div>
+                  <p className="eyebrow">{reframe.eyebrow}</p>
+                  <h2 id="reframe-title">{reframe.title}</h2>
+                </div>
+                <p>{reframe.introduction}</p>
+              </div>
+
+              <div className="cs-reframe-grid">
+                <article className="cs-reframe-panel cs-reframe-panel--original">
+                  <p className="cs-reframe-label">{reframe.original.label}</p>
+                  <h3>{reframe.original.question}</h3>
+                  <p>{reframe.original.explanation}</p>
+                </article>
+
+                <div className="cs-reframe-bridge">
+                  <span>{reframe.bridgeLabel}</span>
+                </div>
+
+                <article className="cs-reframe-panel cs-reframe-panel--informed">
+                  <p className="cs-reframe-label">{reframe.informed.label}</p>
+                  <h3>{reframe.informed.question}</h3>
+                  <p>{reframe.informed.explanation}</p>
+                </article>
+              </div>
+            </div>
+          </section>
+        ) : null}
+
+        {decisionJourney ? (
+          <section
+            className="cs-decision-journey"
+            aria-labelledby="decision-journey-title"
+          >
+            <div className="container">
+              <div className="cs-decision-journey-head">
+                <div>
+                  <p className="eyebrow">{decisionJourney.eyebrow}</p>
+                  <h2 id="decision-journey-title">{decisionJourney.title}</h2>
+                </div>
+                <p>{decisionJourney.introduction}</p>
+              </div>
+
+              <ol className="cs-decision-journey-grid">
+                {decisionJourney.steps.map((step, index) => (
+                  <li className="cs-decision-journey-step" key={step.title}>
+                    <span className="cs-decision-journey-number" aria-hidden="true">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <h3>{step.title}</h3>
+                    <p>{step.description}</p>
+                    {step.markers?.map((marker) => (
+                      <span
+                        className={`cs-decision-marker cs-decision-marker--${marker.variant}`}
+                        key={marker.label}
+                      >
+                        {marker.label}
+                      </span>
+                    ))}
+                  </li>
+                ))}
+              </ol>
+
+              <p className="cs-decision-journey-conclusion">
+                {decisionJourney.conclusion}
+              </p>
+            </div>
+          </section>
+        ) : null}
 
         {evidence ? (
           <section className="cs-evidence" aria-labelledby="evidence-title">

@@ -198,6 +198,193 @@
   letter-spacing: -0.025em;
 }
 
+.cs-reframe {
+  padding: 106px 0 116px;
+  background: var(--stone);
+}
+
+.cs-reframe-head,
+.cs-decision-journey-head {
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: 100px;
+  align-items: end;
+}
+
+.cs-reframe-head > p,
+.cs-decision-journey-head > p {
+  max-width: 610px;
+  color: var(--cs-muted);
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.cs-reframe-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 142px minmax(0, 1fr);
+  gap: 0;
+  align-items: stretch;
+  margin-top: 62px;
+}
+
+.cs-reframe-panel {
+  min-height: 390px;
+  padding: 42px 44px 46px;
+  border-top: 2px solid var(--cs-line);
+  background: var(--warm-white);
+}
+
+.cs-reframe-panel--informed {
+  border-top-color: var(--rose);
+  background: var(--blush);
+}
+
+.cs-reframe-label {
+  color: var(--rose);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.cs-reframe-panel h3 {
+  margin-top: 22px;
+  font-size: 39px;
+  line-height: 1.2;
+}
+
+.cs-reframe-panel > p:last-child {
+  margin-top: 26px;
+  color: var(--cs-muted);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.cs-reframe-bridge {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--rose);
+  text-align: center;
+}
+
+.cs-reframe-bridge::before {
+  content: "";
+  position: absolute;
+  top: 18%;
+  bottom: 18%;
+  left: 50%;
+  width: 1px;
+  background: rgba(150, 85, 95, 0.32);
+}
+
+.cs-reframe-bridge span {
+  position: relative;
+  z-index: 1;
+  max-width: 116px;
+  padding: 12px 10px;
+  background: var(--stone);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.cs-decision-journey {
+  padding: 108px 0 116px;
+  border-bottom: 1px solid var(--soft-line);
+}
+
+.cs-decision-journey-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+  margin: 68px 0 0;
+  padding: 28px 0 0;
+  list-style: none;
+}
+
+.cs-decision-journey-grid::before {
+  content: "";
+  position: absolute;
+  top: 44px;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  background: var(--cs-line);
+}
+
+.cs-decision-journey-step {
+  position: relative;
+  min-width: 0;
+  padding-right: 18px;
+}
+
+.cs-decision-journey-number {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(150, 85, 95, 0.45);
+  border-radius: 50%;
+  background: var(--warm-white);
+  color: var(--rose);
+  font-family: var(--font-serif), "Newsreader", Georgia, serif;
+  font-size: 17px;
+}
+
+.cs-decision-journey-step h3 {
+  margin-top: 24px;
+  font-size: 31px;
+}
+
+.cs-decision-journey-step > p {
+  margin-top: 16px;
+  color: var(--cs-muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.cs-decision-marker {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 9px 12px;
+  border: 1px solid var(--cs-line);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.cs-decision-marker--original {
+  background: var(--stone);
+  color: var(--cs-muted);
+}
+
+.cs-decision-marker--informed {
+  border-color: rgba(150, 85, 95, 0.3);
+  background: var(--blush);
+  color: var(--rose);
+}
+
+.cs-decision-journey-conclusion {
+  max-width: 940px;
+  margin: 66px 0 0 auto;
+  padding: 36px 0 4px 46px;
+  border-left: 2px solid var(--rose);
+  font-family: var(--font-serif), "Newsreader", Georgia, serif;
+  font-size: 36px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
 .cs-evidence {
   padding: 106px 0 116px;
   background: var(--stone);
@@ -536,6 +723,11 @@
     gap: 28px 38px;
   }
 
+  .cs-service-list--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+  }
+
   .cs-service-step {
     padding-bottom: 0;
   }
@@ -549,9 +741,33 @@
   }
 
   .cs-evidence-head,
-  .cs-delivery-head {
+  .cs-delivery-head,
+  .cs-reframe-head,
+  .cs-decision-journey-head {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+
+  .cs-reframe-grid {
+    grid-template-columns: 1fr 110px 1fr;
+  }
+
+  .cs-reframe-panel {
+    min-height: 420px;
+    padding: 36px 34px 40px;
+  }
+
+  .cs-reframe-panel h3 {
+    font-size: 34px;
+  }
+
+  .cs-decision-journey-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 52px 46px;
+  }
+
+  .cs-decision-journey-grid::before {
+    display: none;
   }
 
   .cs-evidence-head > p {
@@ -688,7 +904,8 @@
     padding: 30px 24px 32px;
   }
 
-  .cs-service-list {
+  .cs-service-list,
+  .cs-service-list--three {
     display: block;
   }
 
@@ -724,6 +941,94 @@
 
   .cs-problem-quote blockquote {
     font-size: 33px;
+  }
+
+  .cs-reframe {
+    padding: 74px 0 82px;
+  }
+
+  .cs-reframe-head > p,
+  .cs-decision-journey-head > p {
+    font-size: 17px;
+  }
+
+  .cs-reframe-grid {
+    grid-template-columns: 1fr;
+    margin-top: 44px;
+  }
+
+  .cs-reframe-panel {
+    min-height: auto;
+    padding: 32px 26px 36px;
+  }
+
+  .cs-reframe-panel h3 {
+    font-size: 32px;
+  }
+
+  .cs-reframe-bridge {
+    min-height: 112px;
+  }
+
+  .cs-reframe-bridge::before {
+    top: 0;
+    bottom: 0;
+  }
+
+  .cs-reframe-bridge span {
+    max-width: 154px;
+  }
+
+  .cs-decision-journey {
+    padding: 76px 0 84px;
+  }
+
+  .cs-decision-journey-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 50px;
+    padding-top: 0;
+  }
+
+  .cs-decision-journey-step {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    column-gap: 18px;
+    padding: 0 0 42px;
+  }
+
+  .cs-decision-journey-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 16px;
+    top: 34px;
+    bottom: 0;
+    width: 1px;
+    background: var(--cs-line);
+  }
+
+  .cs-decision-journey-number {
+    grid-row: 1 / span 4;
+  }
+
+  .cs-decision-journey-step h3 {
+    margin-top: 2px;
+    font-size: 29px;
+  }
+
+  .cs-decision-journey-step > p {
+    margin-top: 12px;
+  }
+
+  .cs-decision-marker {
+    justify-self: start;
+    margin-top: 17px;
+  }
+
+  .cs-decision-journey-conclusion {
+    margin-top: 18px;
+    padding: 30px 0 2px 26px;
+    font-size: 31px;
   }
 
   .cs-evidence {

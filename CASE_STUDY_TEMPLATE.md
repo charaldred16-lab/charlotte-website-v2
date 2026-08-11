@@ -1,41 +1,47 @@
-# Reusable case-study system
+# Reusable case-study template
 
-Case studies use typed content rather than placing the full story directly in a route file.
+Case-study content lives in:
 
-## Files
+```text
+src/content/case-studies/
+```
 
-- `src/content/case-studies/types.ts` — shared content contract
-- `src/content/case-studies/hertz.ts` — Hertz story content
-- `src/components/case-study/CaseStudyLayout.tsx` — reusable presentation
-- `src/lib/case-study.ts` — metadata, URL and JSON-LD helpers
-- `src/styles/case-study.css` — case-study styling
-- `src/app/work/hertz-keyless-rental/page.tsx` — small route entry point
+Each story exports an object that `satisfies CaseStudyContent`, giving the content file full type checking without widening its values.
 
-No CSS is embedded in the route or component code.
+## Core modules
 
-## Create another story
+Every story contains:
 
-1. Duplicate `src/content/case-studies/hertz.ts` and rename it.
-2. Replace only the genuine content and image details.
-3. Keep `satisfies CaseStudyContent` at the end so TypeScript checks the story structure.
-4. Create a route under `src/app/work/<slug>/page.tsx` that uses the shared metadata and layout helpers.
-5. Add the published route to `src/app/sitemap.ts`.
-6. Add or update the homepage card in `src/lib/site.ts`.
+- client and category
+- title and introduction
+- project details
+- context sections
 
 ## Optional modules
 
-A story can include or omit:
+Use only the modules the story genuinely needs:
 
-- journey summary
-- quote
-- evidence gallery
-- delivery process
-- featured result or pilot, with or without an image
-- principles
-- next-project link
+- `journey` — a compact summary in the hero
+- `quote` — an editorial statement, not an invented customer quotation
+- `reframe` — compares an initial problem framing with a research-informed one
+- `decisionJourney` — shows where different interventions sit in a journey
+- `evidence` — genuine screenshots or artefacts with intrinsic dimensions
+- `delivery` — the main stages of the work
+- `feature` — a pilot, result or key outcome, with an optional genuine image
+- `principles` — the decisions or lessons that shaped the work
+- `nextProject` — links to another case study
 
-The visual system should remain consistent, but projects should not be forced into identical narratives.
+## Adding a new story
 
-## Images
+1. Create a typed content file in `src/content/case-studies/`.
+2. Create a route under `src/app/work/<slug>/page.tsx`.
+3. Use `createCaseStudyMetadata`, `createCaseStudyJsonLd` and `CaseStudyLayout`.
+4. Add the route to `src/app/sitemap.ts`.
+5. Add a Playwright test for the story's most important claims and layout behaviour.
+6. Run `npm run quality`.
 
-Every image declares its genuine width and height. Evidence screenshots link to the original full-size file. When a story has exactly three evidence images, tablet widths show two above and one centred beneath; mobile uses one readable column.
+## Evidence rule
+
+Do not invent screenshots, UI states, research outputs, customer quotations, companies, metrics or results.
+
+When genuine artefacts do not exist, use editorial structures such as a problem reframe or journey map. These should explain the reasoning without resembling fabricated product evidence.

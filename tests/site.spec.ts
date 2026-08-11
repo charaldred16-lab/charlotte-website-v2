@@ -116,6 +116,38 @@ test("Hertz case study shows genuine evidence and remains within the viewport", 
   expect(hasHorizontalOverflow).toBeFalsy();
 });
 
+test("Ocado case study explains the research shift without invented artefacts", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+
+  const response = await page.goto("/work/ocado-offers");
+
+  expect(response).not.toBeNull();
+  expect(response?.ok()).toBeTruthy();
+
+  await expect(
+    page.getByRole("heading", {
+      level: 1,
+      name: "Rethinking where customers discover offers",
+    }),
+  ).toBeVisible();
+  await expect(page.locator(".cs-reframe")).toBeVisible();
+  await expect(page.locator(".cs-decision-journey-step")).toHaveCount(4);
+  await expect(
+    page.getByText("Research direction", { exact: true }),
+  ).toBeVisible();
+  await expect(page.locator(".cs-evidence")).toHaveCount(0);
+
+  const hasHorizontalOverflow = await page.evaluate(
+    () =>
+      document.documentElement.scrollWidth >
+      document.documentElement.clientWidth,
+  );
+
+  expect(hasHorizontalOverflow).toBeFalsy();
+});
+
 test("unknown routes use the branded not-found page", async ({ page }) => {
   const response = await page.goto("/this-page-does-not-exist");
 

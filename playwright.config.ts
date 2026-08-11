@@ -24,7 +24,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: `npm run start -- -p ${testPort}`,
+    command: `npm run build && npm run start -- -p ${testPort}`,
     url: testBaseUrl,
     reuseExistingServer: false,
     timeout: 120_000,

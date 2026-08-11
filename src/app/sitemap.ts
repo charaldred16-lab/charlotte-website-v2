@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { hertzCaseStudy } from "@/content/case-studies/hertz";
+import { ocadoCaseStudy } from "@/content/case-studies/ocado";
 import { getCaseStudyPath } from "@/lib/case-study";
 import { siteConfig } from "@/lib/site";
 
@@ -12,6 +13,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${siteConfig.url}${getCaseStudyPath(hertzCaseStudy.slug)}`,
+      changeFrequency: "yearly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteConfig.url}${getCaseStudyPath(ocadoCaseStudy.slug)}`,
       changeFrequency: "yearly",
       priority: 0.8,
     },
