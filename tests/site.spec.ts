@@ -148,6 +148,60 @@ test("Ocado case study explains the research shift without invented artefacts", 
   expect(hasHorizontalOverflow).toBeFalsy();
 });
 
+test("About page keeps its approved content and fits all responsive viewports", async ({
+  page,
+}) => {
+  const viewports = [
+    { name: "mobile", width: 390, height: 844 },
+    { name: "tablet", width: 834, height: 1112 },
+    { name: "desktop", width: 1440, height: 1000 },
+  ] as const;
+
+  for (const viewport of viewports) {
+    await test.step(viewport.name, async () => {
+      await page.setViewportSize({
+        width: viewport.width,
+        height: viewport.height,
+      });
+
+      const response = await page.goto("/about");
+
+      expect(response).not.toBeNull();
+      expect(response?.ok()).toBeTruthy();
+
+      await expect(
+        page.getByRole("heading", {
+          level: 1,
+          name: "My experience sits between customer understanding, product and growth.",
+        }),
+      ).toBeVisible();
+      await expect(
+        page.getByText(
+          "I adapt my approach to the business rather than expecting the business to adapt to my process.",
+          { exact: true },
+        ),
+      ).toBeVisible();
+      await expect(page.getByRole("heading", { name: "Hertz" })).toBeVisible();
+      await expect(
+        page.getByRole("heading", { name: "Ocado Technology" }),
+      ).toBeVisible();
+
+      const selectedWorkLinks = page.getByRole("link", {
+        name: "View selected work",
+      });
+      await expect(selectedWorkLinks).toHaveCount(1);
+      await expect(selectedWorkLinks).toHaveAttribute("href", "/#work");
+
+      const hasHorizontalOverflow = await page.evaluate(
+        () =>
+          document.documentElement.scrollWidth >
+          document.documentElement.clientWidth,
+      );
+      expect(hasHorizontalOverflow).toBeFalsy();
+    });
+  }
+});
+
 test("unknown routes use the branded not-found page", async ({ page }) => {
   const response = await page.goto("/this-page-does-not-exist");
 

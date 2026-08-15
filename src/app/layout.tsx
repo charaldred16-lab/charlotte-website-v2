@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Manrope, Newsreader } from "next/font/google";
 import "./globals.css";
+import "../styles/about.css";
 import "../styles/case-study.css";
 import { SkipLink } from "@/components/SkipLink";
 import { siteConfig } from "@/lib/site";

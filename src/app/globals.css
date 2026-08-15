@@ -169,6 +169,17 @@ h3 {
   padding-bottom: 5px;
 }
 
+.site-header--inner-page .desktop-nav a:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.site-header--inner-page .desktop-nav .nav-active {
+  padding-bottom: 5px;
+  border-bottom: 1.5px solid var(--rose);
+  color: var(--rose);
+}
+
 .menu-trigger {
   display: none;
   min-width: 58px;
@@ -213,6 +224,10 @@ h3 {
 .responsive-menu a:last-child {
   color: var(--rose);
   border-bottom: 0;
+}
+
+.site-header--inner-page .responsive-menu .nav-active {
+  color: var(--rose);
 }
 
 .hero {

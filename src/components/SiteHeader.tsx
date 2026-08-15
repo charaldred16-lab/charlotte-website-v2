@@ -6,9 +6,13 @@ import { navigation } from "@/lib/site";
 
 type SiteHeaderProps = {
   activeItem?: (typeof navigation)[number]["label"];
+  activeCurrent?: "page" | "location";
 };
 
-export function SiteHeader({ activeItem }: SiteHeaderProps) {
+export function SiteHeader({
+  activeItem,
+  activeCurrent = "location",
+}: SiteHeaderProps) {
   const [open, setOpen] = useState(false);
   const menuId = useId();
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -59,7 +63,7 @@ export function SiteHeader({ activeItem }: SiteHeaderProps) {
               key={item.label}
               href={item.href}
               className={item.label === activeItem ? "nav-active" : undefined}
-              aria-current={item.label === activeItem ? "location" : undefined}
+              aria-current={item.label === activeItem ? activeCurrent : undefined}
             >
               {item.label}
             </Link>
@@ -92,7 +96,7 @@ export function SiteHeader({ activeItem }: SiteHeaderProps) {
               key={item.label}
               href={item.href}
               className={item.label === activeItem ? "nav-active" : undefined}
-              aria-current={item.label === activeItem ? "location" : undefined}
+              aria-current={item.label === activeItem ? activeCurrent : undefined}
               onClick={() => setOpen(false)}
             >
               {item.label}

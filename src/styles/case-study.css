@@ -2,21 +2,6 @@
    Reusable case-study system
    -------------------------------------------------------------------------- */
 
-.site-header--inner-page .desktop-nav a:last-child {
-  padding-bottom: 0;
-  border-bottom: 0;
-}
-
-.site-header--inner-page .desktop-nav .nav-active {
-  padding-bottom: 5px;
-  border-bottom: 1.5px solid var(--rose);
-  color: var(--rose);
-}
-
-.site-header--inner-page .responsive-menu .nav-active {
-  color: var(--rose);
-}
-
 .cs-page {
   --cs-muted: #5d5954;
   --cs-line: #dfd8d3;

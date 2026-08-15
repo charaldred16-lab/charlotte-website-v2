@@ -12,6 +12,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
+      url: `${siteConfig.url}/about`,
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
+    {
       url: `${siteConfig.url}${getCaseStudyPath(hertzCaseStudy.slug)}`,
       changeFrequency: "yearly",
       priority: 0.8,
