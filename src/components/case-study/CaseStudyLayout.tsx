@@ -32,7 +32,7 @@ export function CaseStudyLayout({
 
   return (
     <>
-      <SiteHeader activeItem="Work" />
+      <SiteHeader activeItem="Selected Work" />
 
       <main id="main-content" className="cs-page" tabIndex={-1}>
         <section className="cs-hero" aria-labelledby="case-study-title">

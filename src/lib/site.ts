@@ -17,11 +17,12 @@ export const siteConfig = {
 } as const;
 
 export const navigation = [
-  { label: "Work", href: "/#work" },
-  { label: "How I help", href: "/#how" },
+  { label: "Home", href: "/" },
   { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Selected Work", href: "/#work" },
   { label: "Insights", href: "/#insights" },
-  { label: "Let’s talk", href: "/#contact" },
+  { label: "Contact", href: "/#contact" },
 ] as const;
 
 export const challenges = [

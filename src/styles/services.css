@@ -1,0 +1,299 @@
+.services-page {
+  background: var(--warm-white);
+}
+
+.services-hero {
+  padding: 64px 0 66px;
+  border-bottom: 1px solid var(--soft-line);
+}
+
+.services-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.72fr);
+  gap: 88px;
+  align-items: center;
+}
+
+.services-hero-heading h1 {
+  max-width: 700px;
+  font-size: clamp(3rem, 4.05vw, 3.75rem);
+  line-height: 1.08;
+}
+
+.services-hero-support {
+  max-width: 510px;
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.services-problems {
+  padding: 56px 0 52px;
+  background: var(--blush);
+}
+
+.services-problems > .container > .eyebrow {
+  margin-bottom: 20px;
+}
+
+.services-problem-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 92px;
+  row-gap: 0;
+}
+
+.services-problem {
+  padding: 22px 0 28px;
+}
+
+.services-problem-3,
+.services-problem-4 {
+  padding-top: 30px;
+  border-top: 1px solid color-mix(in srgb, var(--rose) 24%, transparent);
+}
+
+.services-problem h3 {
+  max-width: 460px;
+  font-size: clamp(1.95rem, 2.35vw, 2.35rem);
+  line-height: 1.13;
+}
+
+.services-problem p {
+  max-width: 470px;
+  margin-top: 14px;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.services-approach-note {
+  max-width: 760px;
+  margin-top: 18px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.services-approach-note strong {
+  font-weight: 700;
+}
+
+.services-fractional {
+  padding: 50px 0 52px;
+}
+
+.services-fractional-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 86px;
+  align-items: center;
+}
+
+.services-fractional-grid h2 {
+  max-width: 470px;
+  font-size: clamp(2.4rem, 3.2vw, 2.95rem);
+}
+
+.services-fractional-copy {
+  max-width: 590px;
+  padding: 4px 0 4px 42px;
+  border-left: 1px solid color-mix(in srgb, var(--rose) 55%, transparent);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.services-contact {
+  padding: 26px 0 30px;
+}
+
+.services-contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.9fr) auto;
+  gap: 46px;
+  align-items: center;
+  padding: 28px 34px;
+  background: var(--blush);
+}
+
+.services-contact-grid h2 {
+  font-size: clamp(2rem, 2.65vw, 2.5rem);
+}
+
+.services-contact-grid p {
+  max-width: 470px;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.services-contact-grid .primary-button {
+  min-width: 144px;
+}
+
+@media (max-width: 1024px) {
+  .services-hero {
+    padding: 54px 0 56px;
+  }
+
+  .services-hero-grid {
+    display: block;
+  }
+
+  .services-hero-heading h1 {
+    max-width: 680px;
+    font-size: 3.1rem;
+  }
+
+  .services-hero-support {
+    max-width: 650px;
+    margin-top: 24px;
+  }
+
+  .services-problems {
+    padding: 48px 0 46px;
+  }
+
+  .services-problem-grid {
+    display: block;
+  }
+
+  .services-problem {
+    padding: 19px 0 22px;
+  }
+
+  .services-problem + .services-problem {
+    border-top: 1px solid color-mix(in srgb, var(--rose) 24%, transparent);
+  }
+
+  .services-problem h3,
+  .services-problem p {
+    max-width: 690px;
+  }
+
+  .services-problem h3 {
+    font-size: 1.95rem;
+  }
+
+  .services-approach-note {
+    max-width: 690px;
+    margin-top: 20px;
+  }
+
+  .services-fractional {
+    padding: 46px 0 48px;
+  }
+
+  .services-fractional-grid {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    gap: 54px;
+  }
+
+  .services-fractional-grid h2 {
+    font-size: 2.35rem;
+  }
+
+  .services-fractional-copy {
+    padding-left: 30px;
+  }
+
+  .services-contact-grid {
+    grid-template-columns: minmax(0, 0.9fr) minmax(260px, 1.1fr) auto;
+    gap: 30px;
+    padding: 26px 28px;
+  }
+}
+
+@media (max-width: 620px) {
+  .services-hero {
+    padding: 36px 0 40px;
+  }
+
+  .services-hero-heading h1 {
+    max-width: none;
+    font-size: 2.3rem;
+    line-height: 1.09;
+  }
+
+  .services-hero-support {
+    max-width: none;
+    margin-top: 20px;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .services-problems {
+    padding: 38px 0 36px;
+  }
+
+  .services-problems > .container > .eyebrow {
+    margin-bottom: 12px;
+  }
+
+  .services-problem {
+    padding: 18px 0 20px;
+  }
+
+  .services-problem h3 {
+    max-width: none;
+    font-size: 1.72rem;
+    line-height: 1.14;
+  }
+
+  .services-problem p {
+    max-width: none;
+    margin-top: 9px;
+    font-size: 14px;
+    line-height: 1.62;
+  }
+
+  .services-approach-note {
+    max-width: none;
+    margin-top: 18px;
+    font-size: 14px;
+    line-height: 1.62;
+  }
+
+  .services-fractional {
+    padding: 38px 0 40px;
+  }
+
+  .services-fractional-grid {
+    display: block;
+  }
+
+  .services-fractional-grid h2 {
+    max-width: none;
+    font-size: 2rem;
+  }
+
+  .services-fractional-copy {
+    max-width: none;
+    margin-top: 20px;
+    padding: 0;
+    border-left: 0;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .services-contact {
+    padding: 16px 0 18px;
+  }
+
+  .services-contact-grid {
+    display: block;
+    padding: 22px 20px;
+  }
+
+  .services-contact-grid h2 {
+    font-size: 1.95rem;
+  }
+
+  .services-contact-grid p {
+    max-width: none;
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .services-contact-grid .primary-button {
+    width: 100%;
+    margin-top: 18px;
+  }
+}

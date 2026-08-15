@@ -33,6 +33,22 @@ test("homepage loads with security headers and no horizontal overflow", async ({
   expect(hasHorizontalOverflow).toBeFalsy();
 });
 
+test("shared navigation uses the agreed labels and order", async ({ page }) => {
+  await page.goto("/services");
+
+  const primaryNavigation = page.getByRole("navigation", {
+    name: "Primary navigation",
+  });
+  await expect(primaryNavigation.getByRole("link")).toHaveText([
+    "Home",
+    "About",
+    "Services",
+    "Selected Work",
+    "Insights",
+    "Contact",
+  ]);
+});
+
 test("skip link moves keyboard users to the main content", async ({ page }) => {
   await page.goto("/");
   await page.keyboard.press("Tab");
@@ -191,6 +207,93 @@ test("About page keeps its approved content and fits all responsive viewports", 
       });
       await expect(selectedWorkLinks).toHaveCount(1);
       await expect(selectedWorkLinks).toHaveAttribute("href", "/#work");
+
+      const hasHorizontalOverflow = await page.evaluate(
+        () =>
+          document.documentElement.scrollWidth >
+          document.documentElement.clientWidth,
+      );
+      expect(hasHorizontalOverflow).toBeFalsy();
+    });
+  }
+});
+
+test("Services page presents problem-led support across responsive viewports", async ({
+  page,
+}) => {
+  const viewports = [
+    { name: "mobile", width: 390, height: 844 },
+    { name: "tablet", width: 834, height: 1112 },
+    { name: "desktop", width: 1440, height: 1000 },
+  ] as const;
+
+  for (const viewport of viewports) {
+    await test.step(viewport.name, async () => {
+      await page.setViewportSize({
+        width: viewport.width,
+        height: viewport.height,
+      });
+
+      const response = await page.goto("/services");
+
+      expect(response).not.toBeNull();
+      expect(response?.ok()).toBeTruthy();
+
+      await expect(
+        page.getByRole("heading", {
+          level: 1,
+          name: "I help teams get clear on what matters and confident about what to do next.",
+        }),
+      ).toBeVisible();
+
+      if (viewport.name === "desktop") {
+        const primaryNavigation = page.getByRole("navigation", {
+          name: "Primary navigation",
+        });
+        await expect(
+          primaryNavigation.getByRole("link", { name: "Services" }),
+        ).toHaveAttribute("aria-current", "page");
+      }
+
+      await expect(
+        page.getByRole("heading", {
+          name: "Something isn’t working and you don’t know why.",
+        }),
+      ).toBeVisible();
+      await expect(
+        page.getByRole("heading", {
+          name: "You have an idea but aren’t confident it’s right.",
+        }),
+      ).toBeVisible();
+      await expect(
+        page.getByRole("heading", {
+          name: "There are too many possible priorities.",
+        }),
+      ).toBeVisible();
+      await expect(
+        page.getByRole("heading", {
+          name: "You want to improve an experience but aren’t sure where to focus.",
+        }),
+      ).toBeVisible();
+
+      await expect(
+        page.getByText("The approach is shaped around the question.", {
+          exact: false,
+        }),
+      ).toBeVisible();
+      await expect(
+        page.getByRole("heading", {
+          name: "Sometimes the problem isn’t one project.",
+        }),
+      ).toBeVisible();
+      await expect(
+        page.getByRole("heading", { name: "Tell me what’s happening." }),
+      ).toBeVisible();
+      await expect(
+        page.locator(".services-contact").getByRole("link", {
+          name: "Get in touch",
+        }),
+      ).toHaveAttribute("href", /^mailto:/);
 
       const hasHorizontalOverflow = await page.evaluate(
         () =>
