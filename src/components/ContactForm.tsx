@@ -188,11 +188,14 @@ export function ContactForm({ endpoint, email }: ContactFormProps) {
         tabIndex={-1}
       >
         {status === "success" && (
-          <p>
-            Thanks — your message has been sent. I’ll read it and come back to
-            you directly.
-          </p>
-        )}
+      <div className={styles.successMessage}>
+        <strong className={styles.successTitle}>Message sent</strong>
+        <p>
+          Thanks — your message has been sent. I’ll read it and come back to
+        you directly.
+        </p>
+      </div>
+    )}
         {status === "error" && (
           <p>
             {errorMessage} Email me at <a href={`mailto:${email}`}>{email}</a>.
