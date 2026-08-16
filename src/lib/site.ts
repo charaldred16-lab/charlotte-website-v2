@@ -13,6 +13,12 @@ export const siteConfig = {
   linkedIn:
     process.env.NEXT_PUBLIC_LINKEDIN_URL ??
     "https://www.linkedin.com/in/charlotte-aldred-b055151b/",
+  contactFormEndpoint:
+    process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT ??
+    "https://formspree.io/f/xqpzdbbd",
+  introCallUrl:
+    process.env.NEXT_PUBLIC_INTRO_CALL_URL ??
+    "https://calendar.app.google/sHEzKAsREm4a5LAB7",
   location: "Surrey, United Kingdom",
 } as const;
 
@@ -22,7 +28,7 @@ export const navigation = [
   { label: "Services", href: "/services" },
   { label: "Selected Work", href: "/#work" },
   { label: "Insights", href: "/#insights" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 export const challenges = [

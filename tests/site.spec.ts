@@ -293,7 +293,7 @@ test("Services page presents problem-led support across responsive viewports", a
         page.locator(".services-contact").getByRole("link", {
           name: "Get in touch",
         }),
-      ).toHaveAttribute("href", /^mailto:/);
+      ).toHaveAttribute("href", "/contact");
 
       const hasHorizontalOverflow = await page.evaluate(
         () =>
@@ -303,6 +303,149 @@ test("Services page presents problem-led support across responsive viewports", a
       expect(hasHorizontalOverflow).toBeFalsy();
     });
   }
+});
+
+
+test("Contact page offers a working enquiry form and 15-minute call route", async ({
+  page,
+}) => {
+  const viewports = [
+    { name: "mobile", width: 390, height: 844 },
+    { name: "tablet", width: 834, height: 1112 },
+    { name: "desktop", width: 1440, height: 1000 },
+  ] as const;
+
+  for (const viewport of viewports) {
+    await test.step(viewport.name, async () => {
+      await page.setViewportSize({
+        width: viewport.width,
+        height: viewport.height,
+      });
+
+      const response = await page.goto("/contact");
+
+      expect(response).not.toBeNull();
+      expect(response?.ok()).toBeTruthy();
+
+      await expect(
+        page.getByRole("heading", {
+          level: 1,
+          name: "Let’s talk about what you’re trying to achieve.",
+        }),
+      ).toBeVisible();
+
+      if (viewport.name === "desktop") {
+        const primaryNavigation = page.getByRole("navigation", {
+          name: "Primary navigation",
+        });
+        await expect(
+          primaryNavigation.getByRole("link", { name: "Contact" }),
+        ).toHaveAttribute("aria-current", "page");
+      }
+
+      await expect(
+        page.getByRole("link", { name: /Book a 15-minute intro call/ }),
+      ).toHaveAttribute(
+        "href",
+        "https://calendar.app.google/sHEzKAsREm4a5LAB7",
+      );
+
+      const form = page.locator("#enquiry");
+      await expect(form).toHaveAttribute(
+        "action",
+        "https://formspree.io/f/xqpzdbbd",
+      );
+      await expect(form.getByLabel("Name *")).toBeVisible();
+      await expect(form.getByLabel("Email *")).toBeVisible();
+      await expect(form.getByLabel("Company (optional)")).toBeVisible();
+      await expect(
+        form.getByLabel("What are you working through? *"),
+      ).toBeVisible();
+      await expect(form).toHaveAttribute("aria-busy", "false");
+      await expect(
+        form.getByRole("link", { name: "Privacy notice" }),
+      ).toHaveAttribute("href", "/privacy");
+
+      const hasHorizontalOverflow = await page.evaluate(
+        () =>
+          document.documentElement.scrollWidth >
+          document.documentElement.clientWidth,
+      );
+      expect(hasHorizontalOverflow).toBeFalsy();
+    });
+  }
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.route("https://formspree.io/f/xqpzdbbd", async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ ok: true }),
+    });
+  });
+  await page.goto("/contact");
+
+  const form = page.locator("#enquiry");
+  await form.getByLabel("Name *").fill("Test Person");
+  await form.getByLabel("Email *").fill("test@example.com");
+  await form.getByLabel("Company (optional)").fill("Example Co");
+  await form
+    .getByLabel("What are you working through? *")
+    .fill("I would like help deciding what to prioritise next.");
+  await form.getByRole("button", { name: "Send enquiry" }).click();
+
+  await expect(
+    page.getByText("Thanks — your message has been sent.", { exact: false }),
+  ).toBeVisible();
+});
+
+test("Contact form recovers from a rate-limit failure", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.route("https://formspree.io/f/xqpzdbbd", async (route) => {
+    await route.fulfill({
+      status: 429,
+      contentType: "application/json",
+      body: JSON.stringify({
+        errors: [{ message: "Too many requests" }],
+      }),
+    });
+  });
+  await page.goto("/contact");
+
+  const form = page.locator("#enquiry");
+  await form.getByLabel("Name *").fill("Test Person");
+  await form.getByLabel("Email *").fill("test@example.com");
+  await form
+    .getByLabel("What are you working through? *")
+    .fill("I would like help deciding what to prioritise next.");
+  await form.getByRole("button", { name: "Send enquiry" }).click();
+
+  await expect(
+    page.getByText("There have been too many attempts", { exact: false }),
+  ).toBeVisible();
+  const errorAlert = page.getByRole("alert");
+  await expect(errorAlert.getByRole("link")).toHaveAttribute(
+    "href",
+    /^mailto:/,
+  );
+  await expect(form).toHaveAttribute("aria-busy", "false");
+  await expect(form.getByRole("button", { name: "Send enquiry" })).toBeEnabled();
+});
+
+test("Privacy notice is available from the site footer", async ({ page }) => {
+  const response = await page.goto("/privacy");
+
+  expect(response).not.toBeNull();
+  expect(response?.ok()).toBeTruthy();
+  await expect(
+    page.getByRole("heading", { level: 1, name: "Privacy notice" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Services that may process your information" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("contentinfo").getByRole("link", { name: "Privacy" }),
+  ).toHaveAttribute("href", "/privacy");
 });
 
 test("unknown routes use the branded not-found page", async ({ page }) => {

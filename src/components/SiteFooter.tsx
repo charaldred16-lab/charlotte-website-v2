@@ -28,6 +28,7 @@ export function SiteFooter() {
           <a href={siteConfig.linkedIn} target="_blank" rel="noreferrer">
             LinkedIn
           </a>
+          <Link href="/privacy">Privacy</Link>
         </div>
       </div>
     </footer>

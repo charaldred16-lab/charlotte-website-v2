@@ -78,7 +78,7 @@ export default function HomePage() {
                 confident decisions.
               </p>
               <div className="hero-actions">
-                <a className="primary-button" href={`mailto:${siteConfig.email}`}>
+                <a className="primary-button" href="/contact">
                   Let’s talk
                 </a>
                 <Link className="text-link" href="#work">
@@ -269,7 +269,7 @@ export default function HomePage() {
               experience or looking for another perspective, I’d be happy to hear
               more.
             </p>
-            <a className="primary-button" href={`mailto:${siteConfig.email}`}>
+            <a className="primary-button" href="/contact">
               Let’s talk
             </a>
           </div>

@@ -171,7 +171,7 @@ export default function AboutPage() {
                   you’re working through.
                 </p>
               </div>
-              <Link className="primary-button" href="/#contact">
+              <Link className="primary-button" href="/contact">
                 Get in touch
               </Link>
             </div>

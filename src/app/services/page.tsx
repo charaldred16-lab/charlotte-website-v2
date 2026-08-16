@@ -160,7 +160,7 @@ export default function ServicesPage() {
               You don’t need a finished brief. Tell me what’s going on and we
               can work out whether I can help.
             </p>
-            <a className="primary-button" href={`mailto:${siteConfig.email}`}>
+            <a className="primary-button" href="/contact">
               Get in touch
             </a>
           </div>

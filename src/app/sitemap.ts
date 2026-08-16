@@ -22,6 +22,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${siteConfig.url}/contact`,
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
+    {
+      url: `${siteConfig.url}/privacy`,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
       url: `${siteConfig.url}${getCaseStudyPath(hertzCaseStudy.slug)}`,
       changeFrequency: "yearly",
       priority: 0.8,
