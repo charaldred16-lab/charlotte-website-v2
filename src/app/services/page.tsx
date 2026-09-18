@@ -146,9 +146,7 @@ export default function ServicesPage() {
             </div>
 
             <p className="services-fractional-copy">
-              I also work with organisations on a fractional basis, helping
-              teams set priorities, bring customer evidence into decisions and
-              keep improvement moving.
+             Senior, hands-on support for teams that need help setting priorities, bringing the right people together and moving digital work forward.
             </p>
           </div>
         </section>

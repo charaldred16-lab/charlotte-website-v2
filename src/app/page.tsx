@@ -73,9 +73,7 @@ export default function HomePage() {
             <div className="hero-support">
               <div className="rose-rule" aria-hidden="true" />
               <p className="support">
-                I help organisations simplify complex digital problems and turn
-                insight into clear priorities, practical action and more
-                confident decisions.
+                I help businesses make better decisions about their digital products and experiences, using research, data and experimentation to understand what matters and where to focus.
               </p>
               <div className="hero-actions">
                 <a className="primary-button" href="/contact">

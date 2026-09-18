@@ -72,8 +72,7 @@ export default function AboutPage() {
 
             <div className="about-hero-support">
               <p>
-                I’ve spent more than a decade working across UX research,
-                conversion optimisation, digital marketing and product.
+                My background spans digital marketing, conversion optimisation and UX research. It means I tend to look beyond one discipline, considering customer behaviour, commercial priorities and delivery together.
               </p>
               <p>
                 That means I rarely look at a customer problem through a single

@@ -23,7 +23,7 @@ export default function Header() {
             </span>
 
             <span className="block text-xs text-stone-600">
-              Digital Experience & Optimisation
+              Digital Experience & Product Strategy
             </span>
           </span>
         </Link>

@@ -4,9 +4,9 @@ const resolvedUrl = configuredUrl || (vercelUrl ? `https://${vercelUrl}` : "http
 
 export const siteConfig = {
   name: "Charlotte Aldred",
-  title: "Charlotte Aldred | Digital Experience Consultancy",
+  title: "Charlotte Aldred | Digital Experience & Product Strategy",
   description:
-    "Helping organisations simplify complex digital problems and turn insight into clear priorities, practical action and more confident decisions.",
+    "Helping businesses make better decisions about their digital products and experiences through research, data and experimentation.",
   url: resolvedUrl.replace(/\/$/, ""),
   email:
     process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@charlottealdred.com",
