@@ -27,10 +27,6 @@ export const siteConfig = {
       href: "/selected-work",
     },
     {
-      label: "Insights",
-      href: "/insights",
-    },
-    {
       label: "Contact",
       href: "/contact",
     },

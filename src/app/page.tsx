@@ -6,7 +6,6 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { WorkCarousel } from "@/components/WorkCarousel";
 import {
   challenges,
-  insights,
   principles,
   siteConfig,
 } from "@/lib/site";
@@ -27,9 +26,6 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const featuredInsight = insights.find((item) => "featured" in item && item.featured) ?? insights[0];
-  const secondaryInsights = insights.filter((item) => item !== featuredInsight);
-
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -197,65 +193,6 @@ export default function HomePage() {
                 needs to be.
               </p>
             </aside>
-          </div>
-        </section>
-
-        <section className="insights" id="insights" aria-labelledby="insights-title">
-          <div className="container">
-            <div className="insights-head">
-              <div>
-                <p className="eyebrow">Insights</p>
-                <h2 id="insights-title">Latest thinking</h2>
-              </div>
-              <Link className="text-link insights-all insights-all-top" href="/insights">
-                View all insights
-              </Link>
-            </div>
-
-            <div className="insights-grid">
-              <article className="featured-article">
-                <Link className="article-title" href={featuredInsight.href}>
-                  {featuredInsight.title}
-                </Link>
-                <div className="rose-rule" aria-hidden="true" />
-                <p className="article-summary">{featuredInsight.summary}</p>
-                <div className="article-read">
-                  <Link
-                    className="text-link"
-                    href={featuredInsight.href}
-                    aria-label={`Read article: ${featuredInsight.title}`}
-                  >
-                    Read article
-                  </Link>
-                </div>
-              </article>
-
-              {secondaryInsights.map((article, index) => (
-                <article
-                  className={`small-article small-article-${index + 1}`}
-                  key={article.title}
-                >
-                  <Link className="article-title" href={article.href}>
-                    {article.title}
-                  </Link>
-                  <div className="rose-rule" aria-hidden="true" />
-                  <p className="article-summary">{article.summary}</p>
-                  <div className="article-read">
-                    <Link
-                      className="text-link"
-                      href={article.href}
-                      aria-label={`Read article: ${article.title}`}
-                    >
-                      Read article
-                    </Link>
-                  </div>
-                </article>
-              ))}
-            </div>
-
-            <Link className="text-link insights-all insights-all-bottom" href="/insights">
-              View all insights
-            </Link>
           </div>
         </section>
 
