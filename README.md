@@ -72,7 +72,7 @@ Create `.env.local` locally and add the same values in Vercel:
 
 ```bash
 NEXT_PUBLIC_SITE_URL=https://charlottealdred.com
-NEXT_PUBLIC_CONTACT_EMAIL=hello@charlottealdred.com
+NEXT_PUBLIC_CONTACT_EMAIL=charaldred16@gmail.com
 NEXT_PUBLIC_LINKEDIN_URL=https://www.linkedin.com/in/charlotte-aldred-b055151b/
 ```
 

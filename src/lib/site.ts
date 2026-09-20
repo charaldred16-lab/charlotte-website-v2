@@ -9,7 +9,7 @@ export const siteConfig = {
     "Helping businesses make better decisions about their digital products and experiences through research, data and experimentation.",
   url: resolvedUrl.replace(/\/$/, ""),
   email:
-    process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@charlottealdred.com",
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "charaldred16@gmail.com",
   linkedIn:
     process.env.NEXT_PUBLIC_LINKEDIN_URL ??
     "https://www.linkedin.com/in/charlotte-aldred-b055151b/",
