@@ -63,7 +63,7 @@ export function WorkCarousel() {
       >
         {caseStudies.map((study) => (
           <article className="case-study" data-case-study key={study.client}>
-            <p className="client">{study.client}</p>
+            <p className="client">{study.href}</p>
             <h3>{study.title}</h3>
             <div className="rose-rule" aria-hidden="true" />
             <p>{study.summary}</p>

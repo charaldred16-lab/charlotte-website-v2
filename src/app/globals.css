@@ -378,27 +378,38 @@ h3 {
 }
 
 .work-carousel-status {
-  display: none;
+  display: block;
+  margin: -2px 0 14px;
   color: var(--muted);
   font-size: 14px;
   text-align: right;
 }
 
 .work-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 26px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.work-grid::-webkit-scrollbar {
+  display: none;
 }
 
 .case-study {
+  flex: 0 0 calc((100% - 26px) / 2);
+  min-width: calc((100% - 26px) / 2);
   min-height: 368px;
   padding: 36px 39px 32px;
   border: 1px solid rgba(150, 85, 95, 0.105);
   background: rgba(255, 255, 255, 0.5);
   display: flex;
   flex-direction: column;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
-
 .case-study .client {
   color: var(--rose);
   font-size: 14px;
@@ -811,16 +822,16 @@ button:focus-visible {
     padding: 66px 0 72px;
   }
 
-  .work-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-  }
+ .work-grid {
+  gap: 18px;
+}
 
-  .case-study {
-    min-height: 420px;
-    padding: 32px 31px 29px;
-  }
-
+.case-study {
+  flex-basis: calc((100% - 18px) / 2);
+  min-width: calc((100% - 18px) / 2);
+  min-height: 420px;
+  padding: 32px 31px 29px;
+}
   .case-study h3 {
     font-size: 35px;
   }
