@@ -180,10 +180,10 @@ export const ocadoCaseStudy = {
       },
     ],
   },
-  nextProject: {
-    client: "Hertz",
-    title: "Removing the airport rental queue",
-    descriptor: "Service design and digital innovation",
-    href: "/work/hertz-keyless-rental",
-  },
+ nextProject: {
+  client: "Hertz",
+  title: "Designing a better van rental experience",
+  descriptor: "Customer experience and optimisation",
+  href: "/work/hertz-van-rental",
+},
 } satisfies CaseStudyContent;

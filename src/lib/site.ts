@@ -68,6 +68,30 @@ export const challenges = [
 export const caseStudies = [
   {
     client: "Hertz",
+    title: "Improving the car rental booking journey",
+    summary:
+      "A programme of redesign and A/B testing that simplified the booking experience and increased revenue per visitor by $12.",
+    capabilities: [
+      "Experimentation",
+      "Conversion optimisation",
+      "Digital experience",
+    ],
+    href: "/work/hertz-booking-redesign",
+  },
+  {
+    client: "Ocado Technology",
+    title: "Understanding how customers approach their grocery shop",
+    summary:
+      "A two-week diary study with 20 customers that helped Product, Engineering and UX understand real grocery shopping behaviour.",
+    capabilities: [
+      "Customer research",
+      "Product insight",
+      "Stakeholder engagement",
+    ],
+    href: "/work/ocado-diary-study",
+  },
+  {
+    client: "Hertz",
     title: "Removing the airport rental queue",
     summary:
       "A cross-functional project that adapted existing keyless technology so customers could avoid the rental desk and begin their journey more quickly.",
@@ -89,6 +113,18 @@ export const caseStudies = [
       "Journey optimisation",
     ],
     href: "/work/ocado-offers",
+  },
+  {
+    client: "Hertz",
+    title: "Designing a better van rental experience",
+    summary:
+      "Understanding the different needs of van customers led to a redesigned journey and a 50% increase in conversion.",
+    capabilities: [
+      "Customer understanding",
+      "Journey design",
+      "Experimentation",
+    ],
+    href: "/work/hertz-van-rental",
   },
 ] as const;
 

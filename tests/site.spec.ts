@@ -82,7 +82,7 @@ test("mobile work carousel updates its position counter", async ({ page }) => {
   await page.goto("/");
 
   const status = page.locator(".work-carousel-status");
-  await expect(status).toContainText("1 of 2");
+  await expect(status).toContainText("1 of 5");
 
   await page.locator(".work-grid").evaluate((element) => {
     const cards = element.querySelectorAll<HTMLElement>("[data-case-study]");
@@ -90,7 +90,7 @@ test("mobile work carousel updates its position counter", async ({ page }) => {
     element.dispatchEvent(new Event("scroll"));
   });
 
-  await expect(status).toContainText("2 of 2");
+  await expect(status).toContainText("2 of 5");
 });
 
 test("Hertz case study shows genuine evidence and remains within the viewport", async ({
