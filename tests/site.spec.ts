@@ -44,7 +44,6 @@ test("shared navigation uses the agreed labels and order", async ({ page }) => {
     "About",
     "Services",
     "Selected Work",
-    "Insights",
     "Contact",
   ]);
 });

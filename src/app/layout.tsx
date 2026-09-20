@@ -7,6 +7,7 @@ import "../styles/services.css";
 import "../styles/case-study.css";
 import { SkipLink } from "@/components/SkipLink";
 import { siteConfig } from "@/lib/site";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -58,6 +59,7 @@ export default function RootLayout({
         <SkipLink />
         {children}
       </body>
+       <GoogleAnalytics gaId="G-YEE440LSF1" />
     </html>
   );
 }
